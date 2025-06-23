@@ -8,11 +8,12 @@ plugins {
 android {
     namespace = "com.example.time_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion '27.0.12077973'
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -44,5 +45,6 @@ flutter {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
