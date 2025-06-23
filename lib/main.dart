@@ -138,23 +138,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> scheduleNotification(DateTime startTime, String title) async {
+    const androidDetails = AndroidNotificationDetails(
+      'channel_id',
+      'Напоминания',
+      channelDescription: 'Уведомления о задачах',
+      importance: Importance.high,
+      priority: Priority.high,
+    );
+
+    const notificationDetails = NotificationDetails(android: androidDetails);
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
       0,
       title,
       'Время выполнить задачу!',
       tz.TZDateTime.from(startTime, tz.local),
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'channel_id',
-          'Напоминания',
-          importance: Importance.high,
-          priority: Priority.high,
-        ),
-      ),
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-      UILocalNotificationDateInterpretation.absoluteTime,
+      notificationDetails,
       matchDateTimeComponents: DateTimeComponents.time,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );
   }
 
