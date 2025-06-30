@@ -4,18 +4,21 @@ import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'settings.dart';
 import 'home.dart';
 import 'Theme.dart';
-import 'management.dart';
+import 'management/management.dart';
 import 'repeat_dialog.dart';
 import 'tasks.dart';
+import 'day_tasks.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:intl/date_symbol_data_local.dart';
 
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  initializeDateFormatting('ru_RU', null);
   initializeNotifications();
   runApp(TimeManagementApp());
 }
@@ -102,40 +105,62 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _updateRepeatTasks() {
-    tasksByDate.forEach((date, tasks) {
-      tasks.forEach((task) {
-        List<String> repeatDays = jsonDecode(task['repeatDays'] ?? '[]');
-        if (repeatDays.isNotEmpty) {
-          repeatDays.forEach((repeatDay) {
-            if (repeatDay != date) {
-              DateTime newDate = _getDateForRepeatDay(date, repeatDay);
-              String newDateStr = DateFormat('yyyy-MM-dd').format(newDate);
-              if (!tasksByDate.containsKey(newDateStr)) {
-                tasksByDate[newDateStr] = [];
-              }
-              tasksByDate[newDateStr]!.add(task);
-            }
-          });
-        }
-      });
+    Map<String, List<Map<String, String>>> tempTasksByDate = {};
+
+    tasksByDate.forEach((dateKey, tasks) {
+      tempTasksByDate[dateKey] = List.from(tasks);
     });
+
+    tasksByDate.forEach((dateKey, tasks) {
+      DateTime baseDate;
+      try {
+        baseDate = DateFormat('yyyy-MM-dd').parse(dateKey);
+      } catch (e) {
+        return;
+      }
+
+      for (var task in tasks) {
+        List<String> repeatDays = [];
+        if (task['repeatDays'] != null && task['repeatDays'] is String) {
+          try {
+            repeatDays = List<String>.from(jsonDecode(task['repeatDays']!));
+          } catch (e) {
+            repeatDays = [];
+          }
+        } else if (task['repeatDays'] is List<dynamic>) {
+          repeatDays = (task['repeatDays'] as List<dynamic>).cast<String>();
+        }
+
+
+        if (repeatDays.isNotEmpty) {
+          for (int i = 0; i < 366; i++) {
+            DateTime currentDate = baseDate.add(Duration(days: i));
+            String currentDayName = DateFormat('EE', 'ru_RU').format(currentDate);
+            String newDateStr = DateFormat('yyyy-MM-dd').format(currentDate);
+
+            if (repeatDays.contains(currentDayName)) {
+              if (!tempTasksByDate.containsKey(newDateStr)) {
+                tempTasksByDate[newDateStr] = [];
+              }
+              Map<String, String> repeatedTask = Map<String, String>.from(task);
+
+              bool taskExists = tempTasksByDate[newDateStr]!.any((existingTask) =>
+              existingTask['title'] == repeatedTask['title'] &&
+                  existingTask['time'] == repeatedTask['time'] &&
+                  existingTask['type'] == repeatedTask['type']
+              );
+
+              if (!taskExists) {
+                tempTasksByDate[newDateStr]!.add(repeatedTask);
+              }
+            }
+          }
+        }
+      }
+    });
+    tasksByDate = tempTasksByDate;
   }
 
-  DateTime _getDateForRepeatDay(String date, String repeatDay) {
-    DateTime baseDate = DateFormat('yyyy-MM-dd').parse(date);
-    Map<String, int> dayMap = {
-      'ПН': 0,
-      'ВТ': 1,
-      'СР': 2,
-      'ЧТ': 3,
-      'ПТ': 4,
-      'СБ': 5,
-      'ВС': 6,
-    };
-    int targetDay = dayMap[repeatDay]!;
-    int daysToAdd = (targetDay - baseDate.weekday + 7) % 7;
-    return baseDate.add(Duration(days: daysToAdd));
-  }
 
   Future<void> scheduleNotification(DateTime startTime, String title) async {
     const androidDetails = AndroidNotificationDetails(
@@ -148,11 +173,19 @@ class _HomePageState extends State<HomePage> {
 
     const notificationDetails = NotificationDetails(android: androidDetails);
 
+    DateTime scheduledTime = DateTime(
+      selectedDate.year,
+      selectedDate.month,
+      selectedDate.day,
+      startTime.hour,
+      startTime.minute,
+    );
+
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      0,
+      title.hashCode + scheduledTime.millisecondsSinceEpoch,
       title,
       'Время выполнить задачу!',
-      tz.TZDateTime.from(startTime, tz.local),
+      tz.TZDateTime.from(scheduledTime, tz.local),
       notificationDetails,
       matchDateTimeComponents: DateTimeComponents.time,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -181,128 +214,150 @@ class _HomePageState extends State<HomePage> {
 
   void _addTask({int? index}) {
     TextEditingController textController = TextEditingController();
-    DateTime startTime = DateTime.now();
-    DateTime endTime = DateTime.now().add(Duration(hours: 1));
+    DateTime initialStartTime = DateTime.now();
+    DateTime initialEndTime = DateTime.now().add(Duration(hours: 1));
     String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
     String? selectedType;
+    List<String> repeatDays = [];
 
     if (index != null) {
-      textController.text = tasksByDate[formattedDate]![index]['title']!;
-      selectedType = tasksByDate[formattedDate]![index]['type']!;
-      startTime = DateFormat('HH:mm').parse(tasksByDate[formattedDate]![index]['time']!.split(' - ')[0]);
-      endTime = DateFormat('HH:mm').parse(tasksByDate[formattedDate]![index]['time']!.split(' - ')[1]);
+      final taskToEdit = tasksByDate[formattedDate]![index];
+      textController.text = taskToEdit['title']!;
+      selectedType = taskToEdit['type']!;
+      List<String>? times = (taskToEdit['time'] as String?)?.split(' - ');
+      if (times != null && times.length == 2) {
+        initialStartTime = DateFormat('HH:mm').parse(times[0]);
+        initialEndTime = DateFormat('HH:mm').parse(times[1]);
+      }
+      if (taskToEdit['repeatDays'] != null && taskToEdit['repeatDays']!.isNotEmpty) {
+        try {
+          repeatDays = List<String>.from(jsonDecode(taskToEdit['repeatDays']!));
+        } catch (e) {
+          repeatDays = [];
+        }
+      }
+    } else {
+      initialStartTime = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, DateTime.now().hour, DateTime.now().minute);
+      initialEndTime = initialStartTime.add(Duration(hours: 1));
     }
 
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text(index == null ? 'Добавить задачу' : 'Редактировать задачу'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(controller: textController, decoration: InputDecoration(labelText: 'Название')),
-              SizedBox(height: 10),
-              DropdownButtonFormField<String>(
-                value: selectedType,
-                decoration: InputDecoration(labelText: "Тип задачи"),
-                items: ["Хобби", "Работа", "Учёба", "Спорт", "Отдых", "Другие дела"].map((String type) {
-                  return DropdownMenuItem<String>(
-                    value: type,
-                    child: Text(type),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedType = newValue;
-                  });
-                },
-              ),
-              SizedBox(height: 10),
-              Text('Начало'),
-              TimePickerSpinner(
-                time: startTime,
-                is24HourMode: true,
-                normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
-                highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
-                spacing: 50,
-                itemHeight: 50,
-                isForce2Digits: true,
-                onTimeChange: (time) {
-                  setState(() {
-                    startTime = time;
-                  });
-                },
-              ),
-              SizedBox(height: 10),
-              Text('Конец'),
-              TimePickerSpinner(
-                time: endTime,
-                is24HourMode: true,
-                normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
-                highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
-                spacing: 50,
-                itemHeight: 50,
-                isForce2Digits: true,
-                onTimeChange: (time) {
-                  setState(() {
-                    endTime = time;
-                  });
-                },
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                if (textController.text.isNotEmpty && selectedType != null) {
-                  Map<String, dynamic> newTask = {
-                    "title": textController.text,
-                    "startTime": startTime,
-                    "endTime": endTime,
-                    "type": selectedType,
-                    "color": _getTaskColor(selectedType!),
-                    "repeatDays": jsonEncode([]),
-                  };
-                  if (!tasksByDate.containsKey(formattedDate))
-                  {tasksByDate[formattedDate] = [];}
+        DateTime tempStartTime = initialStartTime;
+        DateTime tempEndTime = initialEndTime;
+        String? tempSelectedType = selectedType;
+        List<String> tempRepeatDays = List.from(repeatDays);
 
-                  if (index == null) {
-                    setState(() {
-                      tasksByDate[formattedDate]!.add({
-                        "title": newTask["title"],
-                        "time": "${DateFormat('HH:mm').format(newTask["startTime"])} - ${DateFormat('HH:mm').format(newTask["endTime"])}",
-                        "type": newTask["type"],
-                        "repeatDays": newTask["repeatDays"],
-                      });
-                    });
-                  } else {
-                    setState(() {
-                      tasksByDate[formattedDate]![index] = {
-                        "title": newTask["title"],
-                        "time": "${DateFormat('HH:mm').format(newTask["startTime"])} - ${DateFormat('HH:mm').format(newTask["endTime"])}",
-                        "type": newTask["type"],
-                        "repeatDays": newTask["repeatDays"],
-                      };
-                    });
-                  }
-                  _saveTasks();
+        return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setStateDialog) {
+              return AlertDialog(
+                contentPadding: EdgeInsets.zero,
+                title: Text(index == null ? 'Добавить задачу' : 'Редактировать задачу'),
+                content:SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                    top: 20,
+                    left: 20,
+                    right: 20,
+                  ),
+                  child:Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(controller: textController, decoration: InputDecoration(labelText: 'Название')),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField<String>(
+                        value: tempSelectedType,
+                        decoration: InputDecoration(labelText: "Тип задачи"),
+                        items: ["Хобби", "Работа", "Учёба", "Спорт", "Отдых", "Другие дела"].map((String type) {
+                          return DropdownMenuItem<String>(
+                            value: type,
+                            child: Text(type),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setStateDialog(() {
+                            tempSelectedType = newValue;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10),
+                      Text('Начало'),
+                      TimePickerSpinner(
+                        time: tempStartTime,
+                        is24HourMode: true,
+                        normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                        highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
+                        spacing: 50,
+                        itemHeight: 50,
+                        isForce2Digits: true,
+                        onTimeChange: (time) {
+                          setStateDialog(() {
+                            tempStartTime = time;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10),
+                      Text('Конец'),
+                      TimePickerSpinner(
+                        time: tempEndTime,
+                        is24HourMode: true,
+                        normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                        highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
+                        spacing: 50,
+                        itemHeight: 50,
+                        isForce2Digits: true,
+                        onTimeChange: (time) {
+                          setStateDialog(() {
+                            tempEndTime = time;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      if (textController.text.isNotEmpty && tempSelectedType != null) {
+                        Map<String, String> newTask = {
+                          "title": textController.text,
+                          "time": "${DateFormat('HH:mm').format(tempStartTime)} - ${DateFormat('HH:mm').format(tempEndTime)}",
+                          "type": tempSelectedType!,
+                          "repeatDays": jsonEncode(tempRepeatDays),
+                        };
+                        if (!tasksByDate.containsKey(formattedDate))
+                        {tasksByDate[formattedDate] = [];}
 
-                  if (textController.text.isNotEmpty && selectedType != null) {
-                    DateTime now = DateTime.now();
-                    if (startTime.isAfter(now)) {
-                      scheduleNotification(startTime, textController.text);
-                    }
-                  }
-                  Navigator.pop(context);
-                }
-              },
-              child: Text('Сохранить',
-                  style: TextStyle(color:Colors.white)
-              ),
-            ),
-          ],
-        );
+                        if (index == null) {
+                          setState(() {
+                            tasksByDate[formattedDate]!.add(newTask);
+                          });
+                        } else {
+                          setState(() {
+                            tasksByDate[formattedDate]![index] = newTask;
+                          });
+                        }
+                        _saveTasks();
+                        _updateRepeatTasks();
+
+                        DateTime notificationTime = DateTime(
+                          selectedDate.year, selectedDate.month, selectedDate.day,
+                          tempStartTime.hour, tempStartTime.minute,
+                        );
+                        if (notificationTime.isAfter(DateTime.now())) {
+                          scheduleNotification(notificationTime, textController.text);
+                        }
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Text('Сохранить',
+                        style: TextStyle(color:Colors.white)
+                    ),
+                  ),
+                ],
+              );
+            });
       },
     );
   }
@@ -321,9 +376,27 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Time Management'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.edit_calendar),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DayTasksScreen(
+                  initialDate: selectedDate,
+                  onTasksChanged: () {
+                    _loadTasks();
+                  },
+                ),
+              ),
+            ).then((_) {
+              _loadTasks();
+            });
+          },
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.table_chart),
+            icon: Icon(Icons.calendar_today),
             onPressed: () {
               Navigator.push(
                 context,
@@ -331,7 +404,7 @@ class _HomePageState extends State<HomePage> {
                   builder: (context) => TasksPage(tasksByDate: tasksByDate),
                 ),
               ).then((_) {
-                setState(() {});
+                _loadTasks();
               });
             },
           ),
@@ -413,6 +486,13 @@ class _HomePageState extends State<HomePage> {
                     itemCount: tasks.length,
                     itemBuilder: (context, index) {
                       final task = tasks[index];
+                      List<String> repeatDaysToDisplay = [];
+                      if (task['repeatDays'] != null && task['repeatDays']!.isNotEmpty) {
+                        try {
+                          repeatDaysToDisplay = List<String>.from(jsonDecode(task['repeatDays']!));
+                        } catch (e) {}
+                      }
+
                       return Card(
                         color: _getTaskColor(task["type"]!),
                         child: ListTile(
@@ -421,8 +501,8 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(tasks[index]['time']!),
-                              if (tasks[index]['repeatDays'] != null && tasks[index]['repeatDays']!.isNotEmpty)
-                                Text(jsonDecode(tasks[index]['repeatDays']!).join(", ")),
+                              if (repeatDaysToDisplay.isNotEmpty)
+                                Text('Повтор: ${repeatDaysToDisplay.join(", ")}'),
                             ],
                           ),
                           trailing: Row(
@@ -431,15 +511,23 @@ class _HomePageState extends State<HomePage> {
                               IconButton(
                                 icon: Icon(Icons.repeat),
                                 onPressed: () {
+                                  List<String> currentRepeatDays = [];
+                                  if (task['repeatDays'] != null && task['repeatDays']!.isNotEmpty) {
+                                    try {
+                                      currentRepeatDays = List<String>.from(jsonDecode(task['repeatDays']!));
+                                    } catch (e) {}
+                                  }
                                   showDialog(
                                     context: context,
                                     builder: (context) => RepeatDialog(
-                                      task: task,
+                                      initialSelectedDays: currentRepeatDays,
+                                      taskTitle: task['title']!,
                                       onRepeatDaysSelected: (newDays) {
                                         setState(() {
                                           tasksByDate[formattedDate]![index]["repeatDays"] = jsonEncode(newDays);
+                                          _saveTasks();
+                                          _updateRepeatTasks();
                                         });
-                                        _saveTasks();
                                       },
                                     ),
                                   );
@@ -456,6 +544,7 @@ class _HomePageState extends State<HomePage> {
                                     tasksByDate[formattedDate]!.removeAt(index);
                                   });
                                   _saveTasks();
+                                  _updateRepeatTasks();
                                 },
                               ),
                             ],
@@ -488,7 +577,7 @@ class _HomePageState extends State<HomePage> {
             Spacer(),
 
             FloatingActionButton(
-              child: Icon(Icons.add_box, size: 40),
+              child: Icon(Icons.add, size: 40),
               onPressed: () => _addTask(),
             ),
 
@@ -507,4 +596,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

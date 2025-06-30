@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'day_tasks.dart';
 
 class TasksPage extends StatefulWidget {
   final Map<String, List<Map<String, dynamic>>> tasksByDate;
@@ -77,6 +78,7 @@ class _TasksPageState extends State<TasksPage> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
+                          childAspectRatio: 0.7,
                           children: List.generate(6, (i) {
                             DateTime date = currentDates[i];
                             String formattedDate = DateFormat('yyyy-MM-dd').format(date);
@@ -93,7 +95,14 @@ class _TasksPageState extends State<TasksPage> {
                                 child: Column(
                                   children: [
                                     ElevatedButton(
-                                      onPressed: (){},
+                                      onPressed: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => DayTasksScreen(initialDate: date),
+                                          ),
+                                        );
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.grey[400],
                                         foregroundColor: Colors.black87,

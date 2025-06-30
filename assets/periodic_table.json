@@ -1,0 +1,1064 @@
+[
+  {
+    "name": "Hydrogen",
+    "symbol": "H",
+    "number": 1,
+    "group": 1,
+    "period": 1,
+    "atomic_mass": 1.008,
+    "category": "nonmetal"
+  },
+  {
+    "name": "Helium",
+    "symbol": "He",
+    "number": 2,
+    "group": 18,
+    "period": 1,
+    "atomic_mass": 4.0026,
+    "category": "noble gas"
+  },
+  {
+    "name": "Lithium",
+    "symbol": "Li",
+    "number": 3,
+    "group": 1,
+    "period": 2,
+    "atomic_mass": 6.94,
+    "category": "alkali metal"
+  },
+  {
+    "name": "Beryllium",
+    "symbol": "Be",
+    "number": 4,
+    "group": 2,
+    "period": 2,
+    "atomic_mass": 9.0122,
+    "category": "alkaline earth metal"
+  },
+  {
+    "name": "Boron",
+    "symbol": "B",
+    "number": 5,
+    "group": 13,
+    "period": 2,
+    "atomic_mass": 10.81,
+    "category": "metalloid"
+  },
+  {
+    "name": "Carbon",
+    "symbol": "C",
+    "number": 6,
+    "group": 14,
+    "period": 2,
+    "atomic_mass": 12.011,
+    "category": "nonmetal"
+  },
+  {
+    "name": "Nitrogen",
+    "symbol": "N",
+    "number": 7,
+    "group": 15,
+    "period": 2,
+    "atomic_mass": 14.007,
+    "category": "nonmetal"
+  },
+  {
+    "name": "Oxygen",
+    "symbol": "O",
+    "number": 8,
+    "group": 16,
+    "period": 2,
+    "atomic_mass": 15.999,
+    "category": "nonmetal"
+  },
+  {
+    "name": "Fluorine",
+    "symbol": "F",
+    "number": 9,
+    "group": 17,
+    "period": 2,
+    "atomic_mass": 18.998,
+    "category": "halogen"
+  },
+  {
+    "name": "Neon",
+    "symbol": "Ne",
+    "number": 10,
+    "group": 18,
+    "period": 2,
+    "atomic_mass": 20.18,
+    "category": "noble gas"
+  },
+  {
+    "name": "Element11",
+    "symbol": "E11",
+    "number": 11,
+    "group": 12,
+    "period": 1,
+    "atomic_mass": 36.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element12",
+    "symbol": "E12",
+    "number": 12,
+    "group": 13,
+    "period": 1,
+    "atomic_mass": 38.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element13",
+    "symbol": "E13",
+    "number": 13,
+    "group": 14,
+    "period": 1,
+    "atomic_mass": 39.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element14",
+    "symbol": "E14",
+    "number": 14,
+    "group": 15,
+    "period": 1,
+    "atomic_mass": 41.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element15",
+    "symbol": "E15",
+    "number": 15,
+    "group": 16,
+    "period": 1,
+    "atomic_mass": 42.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element16",
+    "symbol": "E16",
+    "number": 16,
+    "group": 17,
+    "period": 1,
+    "atomic_mass": 44.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element17",
+    "symbol": "E17",
+    "number": 17,
+    "group": 18,
+    "period": 1,
+    "atomic_mass": 45.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element18",
+    "symbol": "E18",
+    "number": 18,
+    "group": 1,
+    "period": 2,
+    "atomic_mass": 47.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element19",
+    "symbol": "E19",
+    "number": 19,
+    "group": 2,
+    "period": 2,
+    "atomic_mass": 48.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element20",
+    "symbol": "E20",
+    "number": 20,
+    "group": 3,
+    "period": 2,
+    "atomic_mass": 50.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element21",
+    "symbol": "E21",
+    "number": 21,
+    "group": 4,
+    "period": 2,
+    "atomic_mass": 51.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element22",
+    "symbol": "E22",
+    "number": 22,
+    "group": 5,
+    "period": 2,
+    "atomic_mass": 53.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element23",
+    "symbol": "E23",
+    "number": 23,
+    "group": 6,
+    "period": 2,
+    "atomic_mass": 54.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element24",
+    "symbol": "E24",
+    "number": 24,
+    "group": 7,
+    "period": 2,
+    "atomic_mass": 56.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element25",
+    "symbol": "E25",
+    "number": 25,
+    "group": 8,
+    "period": 2,
+    "atomic_mass": 57.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element26",
+    "symbol": "E26",
+    "number": 26,
+    "group": 9,
+    "period": 2,
+    "atomic_mass": 59.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element27",
+    "symbol": "E27",
+    "number": 27,
+    "group": 10,
+    "period": 2,
+    "atomic_mass": 60.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element28",
+    "symbol": "E28",
+    "number": 28,
+    "group": 11,
+    "period": 2,
+    "atomic_mass": 62.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element29",
+    "symbol": "E29",
+    "number": 29,
+    "group": 12,
+    "period": 2,
+    "atomic_mass": 63.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element30",
+    "symbol": "E30",
+    "number": 30,
+    "group": 13,
+    "period": 2,
+    "atomic_mass": 65.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element31",
+    "symbol": "E31",
+    "number": 31,
+    "group": 14,
+    "period": 2,
+    "atomic_mass": 66.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element32",
+    "symbol": "E32",
+    "number": 32,
+    "group": 15,
+    "period": 2,
+    "atomic_mass": 68.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element33",
+    "symbol": "E33",
+    "number": 33,
+    "group": 16,
+    "period": 2,
+    "atomic_mass": 69.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element34",
+    "symbol": "E34",
+    "number": 34,
+    "group": 17,
+    "period": 2,
+    "atomic_mass": 71.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element35",
+    "symbol": "E35",
+    "number": 35,
+    "group": 18,
+    "period": 2,
+    "atomic_mass": 72.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element36",
+    "symbol": "E36",
+    "number": 36,
+    "group": 1,
+    "period": 3,
+    "atomic_mass": 74.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element37",
+    "symbol": "E37",
+    "number": 37,
+    "group": 2,
+    "period": 3,
+    "atomic_mass": 75.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element38",
+    "symbol": "E38",
+    "number": 38,
+    "group": 3,
+    "period": 3,
+    "atomic_mass": 77.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element39",
+    "symbol": "E39",
+    "number": 39,
+    "group": 4,
+    "period": 3,
+    "atomic_mass": 78.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element40",
+    "symbol": "E40",
+    "number": 40,
+    "group": 5,
+    "period": 3,
+    "atomic_mass": 80.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element41",
+    "symbol": "E41",
+    "number": 41,
+    "group": 6,
+    "period": 3,
+    "atomic_mass": 81.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element42",
+    "symbol": "E42",
+    "number": 42,
+    "group": 7,
+    "period": 3,
+    "atomic_mass": 83.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element43",
+    "symbol": "E43",
+    "number": 43,
+    "group": 8,
+    "period": 3,
+    "atomic_mass": 84.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element44",
+    "symbol": "E44",
+    "number": 44,
+    "group": 9,
+    "period": 3,
+    "atomic_mass": 86.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element45",
+    "symbol": "E45",
+    "number": 45,
+    "group": 10,
+    "period": 3,
+    "atomic_mass": 87.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element46",
+    "symbol": "E46",
+    "number": 46,
+    "group": 11,
+    "period": 3,
+    "atomic_mass": 89.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element47",
+    "symbol": "E47",
+    "number": 47,
+    "group": 12,
+    "period": 3,
+    "atomic_mass": 90.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element48",
+    "symbol": "E48",
+    "number": 48,
+    "group": 13,
+    "period": 3,
+    "atomic_mass": 92.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element49",
+    "symbol": "E49",
+    "number": 49,
+    "group": 14,
+    "period": 3,
+    "atomic_mass": 93.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element50",
+    "symbol": "E50",
+    "number": 50,
+    "group": 15,
+    "period": 3,
+    "atomic_mass": 95.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element51",
+    "symbol": "E51",
+    "number": 51,
+    "group": 16,
+    "period": 3,
+    "atomic_mass": 96.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element52",
+    "symbol": "E52",
+    "number": 52,
+    "group": 17,
+    "period": 3,
+    "atomic_mass": 98.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element53",
+    "symbol": "E53",
+    "number": 53,
+    "group": 18,
+    "period": 3,
+    "atomic_mass": 99.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element54",
+    "symbol": "E54",
+    "number": 54,
+    "group": 1,
+    "period": 4,
+    "atomic_mass": 101.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element55",
+    "symbol": "E55",
+    "number": 55,
+    "group": 2,
+    "period": 4,
+    "atomic_mass": 102.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element56",
+    "symbol": "E56",
+    "number": 56,
+    "group": 3,
+    "period": 4,
+    "atomic_mass": 104.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element57",
+    "symbol": "E57",
+    "number": 57,
+    "group": 4,
+    "period": 4,
+    "atomic_mass": 105.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element58",
+    "symbol": "E58",
+    "number": 58,
+    "group": 5,
+    "period": 4,
+    "atomic_mass": 107.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element59",
+    "symbol": "E59",
+    "number": 59,
+    "group": 6,
+    "period": 4,
+    "atomic_mass": 108.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element60",
+    "symbol": "E60",
+    "number": 60,
+    "group": 7,
+    "period": 4,
+    "atomic_mass": 110.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element61",
+    "symbol": "E61",
+    "number": 61,
+    "group": 8,
+    "period": 4,
+    "atomic_mass": 111.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element62",
+    "symbol": "E62",
+    "number": 62,
+    "group": 9,
+    "period": 4,
+    "atomic_mass": 113.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element63",
+    "symbol": "E63",
+    "number": 63,
+    "group": 10,
+    "period": 4,
+    "atomic_mass": 114.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element64",
+    "symbol": "E64",
+    "number": 64,
+    "group": 11,
+    "period": 4,
+    "atomic_mass": 116.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element65",
+    "symbol": "E65",
+    "number": 65,
+    "group": 12,
+    "period": 4,
+    "atomic_mass": 117.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element66",
+    "symbol": "E66",
+    "number": 66,
+    "group": 13,
+    "period": 4,
+    "atomic_mass": 119.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element67",
+    "symbol": "E67",
+    "number": 67,
+    "group": 14,
+    "period": 4,
+    "atomic_mass": 120.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element68",
+    "symbol": "E68",
+    "number": 68,
+    "group": 15,
+    "period": 4,
+    "atomic_mass": 122.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element69",
+    "symbol": "E69",
+    "number": 69,
+    "group": 16,
+    "period": 4,
+    "atomic_mass": 123.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element70",
+    "symbol": "E70",
+    "number": 70,
+    "group": 17,
+    "period": 4,
+    "atomic_mass": 125.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element71",
+    "symbol": "E71",
+    "number": 71,
+    "group": 18,
+    "period": 4,
+    "atomic_mass": 126.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element72",
+    "symbol": "E72",
+    "number": 72,
+    "group": 1,
+    "period": 5,
+    "atomic_mass": 128.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element73",
+    "symbol": "E73",
+    "number": 73,
+    "group": 2,
+    "period": 5,
+    "atomic_mass": 129.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element74",
+    "symbol": "E74",
+    "number": 74,
+    "group": 3,
+    "period": 5,
+    "atomic_mass": 131.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element75",
+    "symbol": "E75",
+    "number": 75,
+    "group": 4,
+    "period": 5,
+    "atomic_mass": 132.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element76",
+    "symbol": "E76",
+    "number": 76,
+    "group": 5,
+    "period": 5,
+    "atomic_mass": 134.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element77",
+    "symbol": "E77",
+    "number": 77,
+    "group": 6,
+    "period": 5,
+    "atomic_mass": 135.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element78",
+    "symbol": "E78",
+    "number": 78,
+    "group": 7,
+    "period": 5,
+    "atomic_mass": 137.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element79",
+    "symbol": "E79",
+    "number": 79,
+    "group": 8,
+    "period": 5,
+    "atomic_mass": 138.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element80",
+    "symbol": "E80",
+    "number": 80,
+    "group": 9,
+    "period": 5,
+    "atomic_mass": 140.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element81",
+    "symbol": "E81",
+    "number": 81,
+    "group": 10,
+    "period": 5,
+    "atomic_mass": 141.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element82",
+    "symbol": "E82",
+    "number": 82,
+    "group": 11,
+    "period": 5,
+    "atomic_mass": 143.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element83",
+    "symbol": "E83",
+    "number": 83,
+    "group": 12,
+    "period": 5,
+    "atomic_mass": 144.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element84",
+    "symbol": "E84",
+    "number": 84,
+    "group": 13,
+    "period": 5,
+    "atomic_mass": 146.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element85",
+    "symbol": "E85",
+    "number": 85,
+    "group": 14,
+    "period": 5,
+    "atomic_mass": 147.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element86",
+    "symbol": "E86",
+    "number": 86,
+    "group": 15,
+    "period": 5,
+    "atomic_mass": 149.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element87",
+    "symbol": "E87",
+    "number": 87,
+    "group": 16,
+    "period": 5,
+    "atomic_mass": 150.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element88",
+    "symbol": "E88",
+    "number": 88,
+    "group": 17,
+    "period": 5,
+    "atomic_mass": 152.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element89",
+    "symbol": "E89",
+    "number": 89,
+    "group": 18,
+    "period": 5,
+    "atomic_mass": 153.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element90",
+    "symbol": "E90",
+    "number": 90,
+    "group": 1,
+    "period": 6,
+    "atomic_mass": 155.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element91",
+    "symbol": "E91",
+    "number": 91,
+    "group": 2,
+    "period": 6,
+    "atomic_mass": 156.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element92",
+    "symbol": "E92",
+    "number": 92,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 158.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element93",
+    "symbol": "E93",
+    "number": 93,
+    "group": 4,
+    "period": 6,
+    "atomic_mass": 159.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element94",
+    "symbol": "E94",
+    "number": 94,
+    "group": 5,
+    "period": 6,
+    "atomic_mass": 161.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element95",
+    "symbol": "E95",
+    "number": 95,
+    "group": 6,
+    "period": 6,
+    "atomic_mass": 162.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element96",
+    "symbol": "E96",
+    "number": 96,
+    "group": 7,
+    "period": 6,
+    "atomic_mass": 164.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element97",
+    "symbol": "E97",
+    "number": 97,
+    "group": 8,
+    "period": 6,
+    "atomic_mass": 165.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element98",
+    "symbol": "E98",
+    "number": 98,
+    "group": 9,
+    "period": 6,
+    "atomic_mass": 167.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element99",
+    "symbol": "E99",
+    "number": 99,
+    "group": 10,
+    "period": 6,
+    "atomic_mass": 168.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element100",
+    "symbol": "E100",
+    "number": 100,
+    "group": 11,
+    "period": 6,
+    "atomic_mass": 170.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element101",
+    "symbol": "E101",
+    "number": 101,
+    "group": 12,
+    "period": 6,
+    "atomic_mass": 171.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element102",
+    "symbol": "E102",
+    "number": 102,
+    "group": 13,
+    "period": 6,
+    "atomic_mass": 173.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element103",
+    "symbol": "E103",
+    "number": 103,
+    "group": 14,
+    "period": 6,
+    "atomic_mass": 174.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element104",
+    "symbol": "E104",
+    "number": 104,
+    "group": 15,
+    "period": 6,
+    "atomic_mass": 176.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element105",
+    "symbol": "E105",
+    "number": 105,
+    "group": 16,
+    "period": 6,
+    "atomic_mass": 177.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element106",
+    "symbol": "E106",
+    "number": 106,
+    "group": 17,
+    "period": 6,
+    "atomic_mass": 179.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element107",
+    "symbol": "E107",
+    "number": 107,
+    "group": 18,
+    "period": 6,
+    "atomic_mass": 180.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element108",
+    "symbol": "E108",
+    "number": 108,
+    "group": 1,
+    "period": 7,
+    "atomic_mass": 182.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element109",
+    "symbol": "E109",
+    "number": 109,
+    "group": 2,
+    "period": 7,
+    "atomic_mass": 183.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element110",
+    "symbol": "E110",
+    "number": 110,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 185.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element111",
+    "symbol": "E111",
+    "number": 111,
+    "group": 4,
+    "period": 7,
+    "atomic_mass": 186.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element112",
+    "symbol": "E112",
+    "number": 112,
+    "group": 5,
+    "period": 7,
+    "atomic_mass": 188.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element113",
+    "symbol": "E113",
+    "number": 113,
+    "group": 6,
+    "period": 7,
+    "atomic_mass": 189.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element114",
+    "symbol": "E114",
+    "number": 114,
+    "group": 7,
+    "period": 7,
+    "atomic_mass": 191.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element115",
+    "symbol": "E115",
+    "number": 115,
+    "group": 8,
+    "period": 7,
+    "atomic_mass": 192.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element116",
+    "symbol": "E116",
+    "number": 116,
+    "group": 9,
+    "period": 7,
+    "atomic_mass": 194.0,
+    "category": "unknown"
+  },
+  {
+    "name": "Element117",
+    "symbol": "E117",
+    "number": 117,
+    "group": 10,
+    "period": 7,
+    "atomic_mass": 195.5,
+    "category": "unknown"
+  },
+  {
+    "name": "Element118",
+    "symbol": "E118",
+    "number": 118,
+    "group": 11,
+    "period": 7,
+    "atomic_mass": 197.0,
+    "category": "unknown"
+  }
+]

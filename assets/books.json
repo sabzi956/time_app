@@ -1,0 +1,6 @@
+[
+  { "class": 10, "subject": "Алгебра",     "url": "https://assets.openstax.org/oscms-prodcms/media/documents/Calculus_Volume_1_-_WEB_68M1Z5W.pdf" },
+  { "class": 10, "subject": "Геометрия",   "url": "https://okulyk.com/geometry_10.pdf" },
+  { "class": 9,  "subject": "Физика",      "url": "https://okulyk.com/physics_9.pdf" },
+  { "class": 8,  "subject": "Химия",       "url": "https://okulyk.com/chemistry_8.pdf" }
+]
