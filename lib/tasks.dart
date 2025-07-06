@@ -49,7 +49,7 @@ class _TasksPageState extends State<TasksPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Задания по дням'),
+        title: const Text('Календарь задании'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),

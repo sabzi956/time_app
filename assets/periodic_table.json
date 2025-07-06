@@ -14,7 +14,7 @@
     "number": 2,
     "group": 18,
     "period": 1,
-    "atomic_mass": 4.0026,
+    "atomic_mass": 4.002602,
     "category": "noble gas"
   },
   {
@@ -32,7 +32,7 @@
     "number": 4,
     "group": 2,
     "period": 2,
-    "atomic_mass": 9.0122,
+    "atomic_mass": 9.0121831,
     "category": "alkaline earth metal"
   },
   {
@@ -77,7 +77,7 @@
     "number": 9,
     "group": 17,
     "period": 2,
-    "atomic_mass": 18.998,
+    "atomic_mass": 18.998403163,
     "category": "halogen"
   },
   {
@@ -86,979 +86,979 @@
     "number": 10,
     "group": 18,
     "period": 2,
-    "atomic_mass": 20.18,
+    "atomic_mass": 20.1797,
     "category": "noble gas"
   },
   {
-    "name": "Element11",
-    "symbol": "E11",
+    "name": "Sodium",
+    "symbol": "Na",
     "number": 11,
-    "group": 12,
-    "period": 1,
-    "atomic_mass": 36.5,
-    "category": "unknown"
+    "group": 1,
+    "period": 3,
+    "atomic_mass": 22.98976928,
+    "category": "alkali metal"
   },
   {
-    "name": "Element12",
-    "symbol": "E12",
+    "name": "Magnesium",
+    "symbol": "Mg",
     "number": 12,
-    "group": 13,
-    "period": 1,
-    "atomic_mass": 38.0,
-    "category": "unknown"
+    "group": 2,
+    "period": 3,
+    "atomic_mass": 24.305,
+    "category": "alkaline earth metal"
   },
   {
-    "name": "Element13",
-    "symbol": "E13",
+    "name": "Aluminum",
+    "symbol": "Al",
     "number": 13,
-    "group": 14,
-    "period": 1,
-    "atomic_mass": 39.5,
-    "category": "unknown"
+    "group": 13,
+    "period": 3,
+    "atomic_mass": 26.9815385,
+    "category": "post-transition metal"
   },
   {
-    "name": "Element14",
-    "symbol": "E14",
+    "name": "Silicon",
+    "symbol": "Si",
     "number": 14,
-    "group": 15,
-    "period": 1,
-    "atomic_mass": 41.0,
-    "category": "unknown"
+    "group": 14,
+    "period": 3,
+    "atomic_mass": 28.085,
+    "category": "metalloid"
   },
   {
-    "name": "Element15",
-    "symbol": "E15",
+    "name": "Phosphorus",
+    "symbol": "P",
     "number": 15,
-    "group": 16,
-    "period": 1,
-    "atomic_mass": 42.5,
-    "category": "unknown"
+    "group": 15,
+    "period": 3,
+    "atomic_mass": 30.973761998,
+    "category": "nonmetal"
   },
   {
-    "name": "Element16",
-    "symbol": "E16",
+    "name": "Sulfur",
+    "symbol": "S",
     "number": 16,
-    "group": 17,
-    "period": 1,
-    "atomic_mass": 44.0,
-    "category": "unknown"
+    "group": 16,
+    "period": 3,
+    "atomic_mass": 32.06,
+    "category": "nonmetal"
   },
   {
-    "name": "Element17",
-    "symbol": "E17",
+    "name": "Chlorine",
+    "symbol": "Cl",
     "number": 17,
-    "group": 18,
-    "period": 1,
-    "atomic_mass": 45.5,
-    "category": "unknown"
+    "group": 17,
+    "period": 3,
+    "atomic_mass": 35.45,
+    "category": "halogen"
   },
   {
-    "name": "Element18",
-    "symbol": "E18",
+    "name": "Argon",
+    "symbol": "Ar",
     "number": 18,
-    "group": 1,
-    "period": 2,
-    "atomic_mass": 47.0,
-    "category": "unknown"
+    "group": 18,
+    "period": 3,
+    "atomic_mass": 39.948,
+    "category": "noble gas"
   },
   {
-    "name": "Element19",
-    "symbol": "E19",
+    "name": "Potassium",
+    "symbol": "K",
     "number": 19,
-    "group": 2,
-    "period": 2,
-    "atomic_mass": 48.5,
-    "category": "unknown"
+    "group": 1,
+    "period": 4,
+    "atomic_mass": 39.0983,
+    "category": "alkali metal"
   },
   {
-    "name": "Element20",
-    "symbol": "E20",
+    "name": "Calcium",
+    "symbol": "Ca",
     "number": 20,
-    "group": 3,
-    "period": 2,
-    "atomic_mass": 50.0,
-    "category": "unknown"
+    "group": 2,
+    "period": 4,
+    "atomic_mass": 40.078,
+    "category": "alkaline earth metal"
   },
   {
-    "name": "Element21",
-    "symbol": "E21",
+    "name": "Scandium",
+    "symbol": "Sc",
     "number": 21,
-    "group": 4,
-    "period": 2,
-    "atomic_mass": 51.5,
-    "category": "unknown"
+    "group": 3,
+    "period": 4,
+    "atomic_mass": 44.955908,
+    "category": "transition metal"
   },
   {
-    "name": "Element22",
-    "symbol": "E22",
+    "name": "Titanium",
+    "symbol": "Ti",
     "number": 22,
-    "group": 5,
-    "period": 2,
-    "atomic_mass": 53.0,
-    "category": "unknown"
+    "group": 4,
+    "period": 4,
+    "atomic_mass": 47.867,
+    "category": "transition metal"
   },
   {
-    "name": "Element23",
-    "symbol": "E23",
+    "name": "Vanadium",
+    "symbol": "V",
     "number": 23,
-    "group": 6,
-    "period": 2,
-    "atomic_mass": 54.5,
-    "category": "unknown"
+    "group": 5,
+    "period": 4,
+    "atomic_mass": 50.9415,
+    "category": "transition metal"
   },
   {
-    "name": "Element24",
-    "symbol": "E24",
+    "name": "Chromium",
+    "symbol": "Cr",
     "number": 24,
-    "group": 7,
-    "period": 2,
-    "atomic_mass": 56.0,
-    "category": "unknown"
+    "group": 6,
+    "period": 4,
+    "atomic_mass": 51.9961,
+    "category": "transition metal"
   },
   {
-    "name": "Element25",
-    "symbol": "E25",
+    "name": "Manganese",
+    "symbol": "Mn",
     "number": 25,
-    "group": 8,
-    "period": 2,
-    "atomic_mass": 57.5,
-    "category": "unknown"
+    "group": 7,
+    "period": 4,
+    "atomic_mass": 54.938044,
+    "category": "transition metal"
   },
   {
-    "name": "Element26",
-    "symbol": "E26",
+    "name": "Iron",
+    "symbol": "Fe",
     "number": 26,
-    "group": 9,
-    "period": 2,
-    "atomic_mass": 59.0,
-    "category": "unknown"
+    "group": 8,
+    "period": 4,
+    "atomic_mass": 55.845,
+    "category": "transition metal"
   },
   {
-    "name": "Element27",
-    "symbol": "E27",
+    "name": "Cobalt",
+    "symbol": "Co",
     "number": 27,
-    "group": 10,
-    "period": 2,
-    "atomic_mass": 60.5,
-    "category": "unknown"
+    "group": 9,
+    "period": 4,
+    "atomic_mass": 58.933194,
+    "category": "transition metal"
   },
   {
-    "name": "Element28",
-    "symbol": "E28",
+    "name": "Nickel",
+    "symbol": "Ni",
     "number": 28,
-    "group": 11,
-    "period": 2,
-    "atomic_mass": 62.0,
-    "category": "unknown"
+    "group": 10,
+    "period": 4,
+    "atomic_mass": 58.6934,
+    "category": "transition metal"
   },
   {
-    "name": "Element29",
-    "symbol": "E29",
+    "name": "Copper",
+    "symbol": "Cu",
     "number": 29,
-    "group": 12,
-    "period": 2,
-    "atomic_mass": 63.5,
-    "category": "unknown"
+    "group": 11,
+    "period": 4,
+    "atomic_mass": 63.546,
+    "category": "transition metal"
   },
   {
-    "name": "Element30",
-    "symbol": "E30",
+    "name": "Zinc",
+    "symbol": "Zn",
     "number": 30,
-    "group": 13,
-    "period": 2,
-    "atomic_mass": 65.0,
-    "category": "unknown"
+    "group": 12,
+    "period": 4,
+    "atomic_mass": 65.38,
+    "category": "transition metal"
   },
   {
-    "name": "Element31",
-    "symbol": "E31",
+    "name": "Gallium",
+    "symbol": "Ga",
     "number": 31,
-    "group": 14,
-    "period": 2,
-    "atomic_mass": 66.5,
-    "category": "unknown"
+    "group": 13,
+    "period": 4,
+    "atomic_mass": 69.723,
+    "category": "post-transition metal"
   },
   {
-    "name": "Element32",
-    "symbol": "E32",
+    "name": "Germanium",
+    "symbol": "Ge",
     "number": 32,
-    "group": 15,
-    "period": 2,
-    "atomic_mass": 68.0,
-    "category": "unknown"
+    "group": 14,
+    "period": 4,
+    "atomic_mass": 72.63,
+    "category": "metalloid"
   },
   {
-    "name": "Element33",
-    "symbol": "E33",
+    "name": "Arsenic",
+    "symbol": "As",
     "number": 33,
-    "group": 16,
-    "period": 2,
-    "atomic_mass": 69.5,
-    "category": "unknown"
+    "group": 15,
+    "period": 4,
+    "atomic_mass": 74.921595,
+    "category": "metalloid"
   },
   {
-    "name": "Element34",
-    "symbol": "E34",
+    "name": "Selenium",
+    "symbol": "Se",
     "number": 34,
-    "group": 17,
-    "period": 2,
-    "atomic_mass": 71.0,
-    "category": "unknown"
+    "group": 16,
+    "period": 4,
+    "atomic_mass": 78.971,
+    "category": "nonmetal"
   },
   {
-    "name": "Element35",
-    "symbol": "E35",
+    "name": "Bromine",
+    "symbol": "Br",
     "number": 35,
-    "group": 18,
-    "period": 2,
-    "atomic_mass": 72.5,
-    "category": "unknown"
+    "group": 17,
+    "period": 4,
+    "atomic_mass": 79.904,
+    "category": "halogen"
   },
   {
-    "name": "Element36",
-    "symbol": "E36",
+    "name": "Krypton",
+    "symbol": "Kr",
     "number": 36,
-    "group": 1,
-    "period": 3,
-    "atomic_mass": 74.0,
-    "category": "unknown"
+    "group": 18,
+    "period": 4,
+    "atomic_mass": 83.798,
+    "category": "noble gas"
   },
   {
-    "name": "Element37",
-    "symbol": "E37",
+    "name": "Rubidium",
+    "symbol": "Rb",
     "number": 37,
-    "group": 2,
-    "period": 3,
-    "atomic_mass": 75.5,
-    "category": "unknown"
+    "group": 1,
+    "period": 5,
+    "atomic_mass": 85.4678,
+    "category": "alkali metal"
   },
   {
-    "name": "Element38",
-    "symbol": "E38",
+    "name": "Strontium",
+    "symbol": "Sr",
     "number": 38,
-    "group": 3,
-    "period": 3,
-    "atomic_mass": 77.0,
-    "category": "unknown"
+    "group": 2,
+    "period": 5,
+    "atomic_mass": 87.62,
+    "category": "alkaline earth metal"
   },
   {
-    "name": "Element39",
-    "symbol": "E39",
+    "name": "Yttrium",
+    "symbol": "Y",
     "number": 39,
-    "group": 4,
-    "period": 3,
-    "atomic_mass": 78.5,
-    "category": "unknown"
+    "group": 3,
+    "period": 5,
+    "atomic_mass": 88.90584,
+    "category": "transition metal"
   },
   {
-    "name": "Element40",
-    "symbol": "E40",
+    "name": "Zirconium",
+    "symbol": "Zr",
     "number": 40,
-    "group": 5,
-    "period": 3,
-    "atomic_mass": 80.0,
-    "category": "unknown"
+    "group": 4,
+    "period": 5,
+    "atomic_mass": 91.224,
+    "category": "transition metal"
   },
   {
-    "name": "Element41",
-    "symbol": "E41",
+    "name": "Niobium",
+    "symbol": "Nb",
     "number": 41,
-    "group": 6,
-    "period": 3,
-    "atomic_mass": 81.5,
-    "category": "unknown"
+    "group": 5,
+    "period": 5,
+    "atomic_mass": 92.90637,
+    "category": "transition metal"
   },
   {
-    "name": "Element42",
-    "symbol": "E42",
+    "name": "Molybdenum",
+    "symbol": "Mo",
     "number": 42,
-    "group": 7,
-    "period": 3,
-    "atomic_mass": 83.0,
-    "category": "unknown"
+    "group": 6,
+    "period": 5,
+    "atomic_mass": 95.96,
+    "category": "transition metal"
   },
   {
-    "name": "Element43",
-    "symbol": "E43",
+    "name": "Technetium",
+    "symbol": "Tc",
     "number": 43,
-    "group": 8,
-    "period": 3,
-    "atomic_mass": 84.5,
-    "category": "unknown"
+    "group": 7,
+    "period": 5,
+    "atomic_mass": 98,
+    "category": "transition metal"
   },
   {
-    "name": "Element44",
-    "symbol": "E44",
+    "name": "Ruthenium",
+    "symbol": "Ru",
     "number": 44,
-    "group": 9,
-    "period": 3,
-    "atomic_mass": 86.0,
-    "category": "unknown"
+    "group": 8,
+    "period": 5,
+    "atomic_mass": 101.07,
+    "category": "transition metal"
   },
   {
-    "name": "Element45",
-    "symbol": "E45",
+    "name": "Rhodium",
+    "symbol": "Rh",
     "number": 45,
-    "group": 10,
-    "period": 3,
-    "atomic_mass": 87.5,
-    "category": "unknown"
+    "group": 9,
+    "period": 5,
+    "atomic_mass": 102.9055,
+    "category": "transition metal"
   },
   {
-    "name": "Element46",
-    "symbol": "E46",
+    "name": "Palladium",
+    "symbol": "Pd",
     "number": 46,
-    "group": 11,
-    "period": 3,
-    "atomic_mass": 89.0,
-    "category": "unknown"
+    "group": 10,
+    "period": 5,
+    "atomic_mass": 106.42,
+    "category": "transition metal"
   },
   {
-    "name": "Element47",
-    "symbol": "E47",
+    "name": "Silver",
+    "symbol": "Ag",
     "number": 47,
-    "group": 12,
-    "period": 3,
-    "atomic_mass": 90.5,
-    "category": "unknown"
+    "group": 11,
+    "period": 5,
+    "atomic_mass": 107.8682,
+    "category": "transition metal"
   },
   {
-    "name": "Element48",
-    "symbol": "E48",
+    "name": "Cadmium",
+    "symbol": "Cd",
     "number": 48,
-    "group": 13,
-    "period": 3,
-    "atomic_mass": 92.0,
-    "category": "unknown"
+    "group": 12,
+    "period": 5,
+    "atomic_mass": 112.414,
+    "category": "transition metal"
   },
   {
-    "name": "Element49",
-    "symbol": "E49",
+    "name": "Indium",
+    "symbol": "In",
     "number": 49,
-    "group": 14,
-    "period": 3,
-    "atomic_mass": 93.5,
-    "category": "unknown"
+    "group": 13,
+    "period": 5,
+    "atomic_mass": 114.818,
+    "category": "post-transition metal"
   },
   {
-    "name": "Element50",
-    "symbol": "E50",
+    "name": "Tin",
+    "symbol": "Sn",
     "number": 50,
-    "group": 15,
-    "period": 3,
-    "atomic_mass": 95.0,
-    "category": "unknown"
+    "group": 14,
+    "period": 5,
+    "atomic_mass": 118.710,
+    "category": "post-transition metal"
   },
   {
-    "name": "Element51",
-    "symbol": "E51",
+    "name": "Antimony",
+    "symbol": "Sb",
     "number": 51,
-    "group": 16,
-    "period": 3,
-    "atomic_mass": 96.5,
-    "category": "unknown"
+    "group": 15,
+    "period": 5,
+    "atomic_mass": 121.760,
+    "category": "metalloid"
   },
   {
-    "name": "Element52",
-    "symbol": "E52",
+    "name": "Tellurium",
+    "symbol": "Te",
     "number": 52,
-    "group": 17,
-    "period": 3,
-    "atomic_mass": 98.0,
-    "category": "unknown"
+    "group": 16,
+    "period": 5,
+    "atomic_mass": 127.60,
+    "category": "metalloid"
   },
   {
-    "name": "Element53",
-    "symbol": "E53",
+    "name": "Iodine",
+    "symbol": "I",
     "number": 53,
-    "group": 18,
-    "period": 3,
-    "atomic_mass": 99.5,
-    "category": "unknown"
+    "group": 17,
+    "period": 5,
+    "atomic_mass": 126.90447,
+    "category": "halogen"
   },
   {
-    "name": "Element54",
-    "symbol": "E54",
+    "name": "Xenon",
+    "symbol": "Xe",
     "number": 54,
-    "group": 1,
-    "period": 4,
-    "atomic_mass": 101.0,
-    "category": "unknown"
+    "group": 18,
+    "period": 5,
+    "atomic_mass": 131.293,
+    "category": "noble gas"
   },
   {
-    "name": "Element55",
-    "symbol": "E55",
+    "name": "Cesium",
+    "symbol": "Cs",
     "number": 55,
-    "group": 2,
-    "period": 4,
-    "atomic_mass": 102.5,
-    "category": "unknown"
+    "group": 1,
+    "period": 6,
+    "atomic_mass": 132.90545196,
+    "category": "alkali metal"
   },
   {
-    "name": "Element56",
-    "symbol": "E56",
+    "name": "Barium",
+    "symbol": "Ba",
     "number": 56,
-    "group": 3,
-    "period": 4,
-    "atomic_mass": 104.0,
-    "category": "unknown"
+    "group": 2,
+    "period": 6,
+    "atomic_mass": 137.327,
+    "category": "alkaline earth metal"
   },
   {
-    "name": "Element57",
-    "symbol": "E57",
+    "name": "Lanthanum",
+    "symbol": "La",
     "number": 57,
-    "group": 4,
-    "period": 4,
-    "atomic_mass": 105.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element58",
-    "symbol": "E58",
-    "number": 58,
-    "group": 5,
-    "period": 4,
-    "atomic_mass": 107.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element59",
-    "symbol": "E59",
-    "number": 59,
-    "group": 6,
-    "period": 4,
-    "atomic_mass": 108.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element60",
-    "symbol": "E60",
-    "number": 60,
-    "group": 7,
-    "period": 4,
-    "atomic_mass": 110.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element61",
-    "symbol": "E61",
-    "number": 61,
-    "group": 8,
-    "period": 4,
-    "atomic_mass": 111.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element62",
-    "symbol": "E62",
-    "number": 62,
-    "group": 9,
-    "period": 4,
-    "atomic_mass": 113.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element63",
-    "symbol": "E63",
-    "number": 63,
-    "group": 10,
-    "period": 4,
-    "atomic_mass": 114.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element64",
-    "symbol": "E64",
-    "number": 64,
-    "group": 11,
-    "period": 4,
-    "atomic_mass": 116.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element65",
-    "symbol": "E65",
-    "number": 65,
-    "group": 12,
-    "period": 4,
-    "atomic_mass": 117.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element66",
-    "symbol": "E66",
-    "number": 66,
-    "group": 13,
-    "period": 4,
-    "atomic_mass": 119.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element67",
-    "symbol": "E67",
-    "number": 67,
-    "group": 14,
-    "period": 4,
-    "atomic_mass": 120.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element68",
-    "symbol": "E68",
-    "number": 68,
-    "group": 15,
-    "period": 4,
-    "atomic_mass": 122.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element69",
-    "symbol": "E69",
-    "number": 69,
-    "group": 16,
-    "period": 4,
-    "atomic_mass": 123.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element70",
-    "symbol": "E70",
-    "number": 70,
-    "group": 17,
-    "period": 4,
-    "atomic_mass": 125.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element71",
-    "symbol": "E71",
-    "number": 71,
-    "group": 18,
-    "period": 4,
-    "atomic_mass": 126.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element72",
-    "symbol": "E72",
-    "number": 72,
-    "group": 1,
-    "period": 5,
-    "atomic_mass": 128.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element73",
-    "symbol": "E73",
-    "number": 73,
-    "group": 2,
-    "period": 5,
-    "atomic_mass": 129.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element74",
-    "symbol": "E74",
-    "number": 74,
     "group": 3,
-    "period": 5,
-    "atomic_mass": 131.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 138.90547,
+    "category": "lanthanide"
   },
   {
-    "name": "Element75",
-    "symbol": "E75",
-    "number": 75,
+    "name": "Cerium",
+    "symbol": "Ce",
+    "number": 58,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 140.116,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Praseodymium",
+    "symbol": "Pr",
+    "number": 59,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 140.90766,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Neodymium",
+    "symbol": "Nd",
+    "number": 60,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 144.242,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Promethium",
+    "symbol": "Pm",
+    "number": 61,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 145,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Samarium",
+    "symbol": "Sm",
+    "number": 62,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 150.36,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Europium",
+    "symbol": "Eu",
+    "number": 63,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 151.964,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Gadolinium",
+    "symbol": "Gd",
+    "number": 64,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 157.25,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Terbium",
+    "symbol": "Tb",
+    "number": 65,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 158.92535,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Dysprosium",
+    "symbol": "Dy",
+    "number": 66,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 162.500,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Holmium",
+    "symbol": "Ho",
+    "number": 67,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 164.93033,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Erbium",
+    "symbol": "Er",
+    "number": 68,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 167.259,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Thulium",
+    "symbol": "Tm",
+    "number": 69,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 168.93422,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Ytterbium",
+    "symbol": "Yb",
+    "number": 70,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 173.045,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Lutetium",
+    "symbol": "Lu",
+    "number": 71,
+    "group": 3,
+    "period": 6,
+    "atomic_mass": 174.9668,
+    "category": "lanthanide"
+  },
+  {
+    "name": "Hafnium",
+    "symbol": "Hf",
+    "number": 72,
     "group": 4,
-    "period": 5,
-    "atomic_mass": 132.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 178.49,
+    "category": "transition metal"
   },
   {
-    "name": "Element76",
-    "symbol": "E76",
-    "number": 76,
+    "name": "Tantalum",
+    "symbol": "Ta",
+    "number": 73,
     "group": 5,
-    "period": 5,
-    "atomic_mass": 134.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 180.94788,
+    "category": "transition metal"
   },
   {
-    "name": "Element77",
-    "symbol": "E77",
-    "number": 77,
+    "name": "Tungsten",
+    "symbol": "W",
+    "number": 74,
     "group": 6,
-    "period": 5,
-    "atomic_mass": 135.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 183.84,
+    "category": "transition metal"
   },
   {
-    "name": "Element78",
-    "symbol": "E78",
-    "number": 78,
+    "name": "Rhenium",
+    "symbol": "Re",
+    "number": 75,
     "group": 7,
-    "period": 5,
-    "atomic_mass": 137.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 186.207,
+    "category": "transition metal"
   },
   {
-    "name": "Element79",
-    "symbol": "E79",
-    "number": 79,
+    "name": "Osmium",
+    "symbol": "Os",
+    "number": 76,
     "group": 8,
-    "period": 5,
-    "atomic_mass": 138.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 190.23,
+    "category": "transition metal"
   },
   {
-    "name": "Element80",
-    "symbol": "E80",
-    "number": 80,
+    "name": "Iridium",
+    "symbol": "Ir",
+    "number": 77,
     "group": 9,
-    "period": 5,
-    "atomic_mass": 140.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 192.217,
+    "category": "transition metal"
   },
   {
-    "name": "Element81",
-    "symbol": "E81",
-    "number": 81,
+    "name": "Platinum",
+    "symbol": "Pt",
+    "number": 78,
     "group": 10,
-    "period": 5,
-    "atomic_mass": 141.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 195.084,
+    "category": "transition metal"
   },
   {
-    "name": "Element82",
-    "symbol": "E82",
-    "number": 82,
+    "name": "Gold",
+    "symbol": "Au",
+    "number": 79,
     "group": 11,
-    "period": 5,
-    "atomic_mass": 143.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 196.966570,
+    "category": "transition metal"
   },
   {
-    "name": "Element83",
-    "symbol": "E83",
-    "number": 83,
+    "name": "Mercury",
+    "symbol": "Hg",
+    "number": 80,
     "group": 12,
-    "period": 5,
-    "atomic_mass": 144.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 200.592,
+    "category": "transition metal"
   },
   {
-    "name": "Element84",
-    "symbol": "E84",
-    "number": 84,
+    "name": "Thallium",
+    "symbol": "Tl",
+    "number": 81,
     "group": 13,
-    "period": 5,
-    "atomic_mass": 146.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 204.38,
+    "category": "post-transition metal"
   },
   {
-    "name": "Element85",
-    "symbol": "E85",
-    "number": 85,
+    "name": "Lead",
+    "symbol": "Pb",
+    "number": 82,
     "group": 14,
-    "period": 5,
-    "atomic_mass": 147.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 207.2,
+    "category": "post-transition metal"
   },
   {
-    "name": "Element86",
-    "symbol": "E86",
-    "number": 86,
+    "name": "Bismuth",
+    "symbol": "Bi",
+    "number": 83,
     "group": 15,
-    "period": 5,
-    "atomic_mass": 149.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 208.98040,
+    "category": "post-transition metal"
   },
   {
-    "name": "Element87",
-    "symbol": "E87",
-    "number": 87,
+    "name": "Polonium",
+    "symbol": "Po",
+    "number": 84,
     "group": 16,
-    "period": 5,
-    "atomic_mass": 150.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 209,
+    "category": "metalloid"
   },
   {
-    "name": "Element88",
-    "symbol": "E88",
-    "number": 88,
+    "name": "Astatine",
+    "symbol": "At",
+    "number": 85,
     "group": 17,
-    "period": 5,
-    "atomic_mass": 152.0,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 210,
+    "category": "halogen"
   },
   {
-    "name": "Element89",
-    "symbol": "E89",
-    "number": 89,
+    "name": "Radon",
+    "symbol": "Rn",
+    "number": 86,
     "group": 18,
-    "period": 5,
-    "atomic_mass": 153.5,
-    "category": "unknown"
+    "period": 6,
+    "atomic_mass": 222,
+    "category": "noble gas"
   },
   {
-    "name": "Element90",
-    "symbol": "E90",
-    "number": 90,
+    "name": "Francium",
+    "symbol": "Fr",
+    "number": 87,
     "group": 1,
-    "period": 6,
-    "atomic_mass": 155.0,
-    "category": "unknown"
+    "period": 7,
+    "atomic_mass": 223,
+    "category": "alkali metal"
   },
   {
-    "name": "Element91",
-    "symbol": "E91",
-    "number": 91,
+    "name": "Radium",
+    "symbol": "Ra",
+    "number": 88,
     "group": 2,
-    "period": 6,
-    "atomic_mass": 156.5,
-    "category": "unknown"
+    "period": 7,
+    "atomic_mass": 226,
+    "category": "alkaline earth metal"
   },
   {
-    "name": "Element92",
-    "symbol": "E92",
+    "name": "Actinium",
+    "symbol": "Ac",
+    "number": 89,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 227,
+    "category": "actinide"
+  },
+  {
+    "name": "Thorium",
+    "symbol": "Th",
+    "number": 90,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 232.0377,
+    "category": "actinide"
+  },
+  {
+    "name": "Protactinium",
+    "symbol": "Pa",
+    "number": 91,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 231.03588,
+    "category": "actinide"
+  },
+  {
+    "name": "Uranium",
+    "symbol": "U",
     "number": 92,
     "group": 3,
-    "period": 6,
-    "atomic_mass": 158.0,
-    "category": "unknown"
+    "period": 7,
+    "atomic_mass": 238.02891,
+    "category": "actinide"
   },
   {
-    "name": "Element93",
-    "symbol": "E93",
+    "name": "Neptunium",
+    "symbol": "Np",
     "number": 93,
-    "group": 4,
-    "period": 6,
-    "atomic_mass": 159.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element94",
-    "symbol": "E94",
-    "number": 94,
-    "group": 5,
-    "period": 6,
-    "atomic_mass": 161.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element95",
-    "symbol": "E95",
-    "number": 95,
-    "group": 6,
-    "period": 6,
-    "atomic_mass": 162.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element96",
-    "symbol": "E96",
-    "number": 96,
-    "group": 7,
-    "period": 6,
-    "atomic_mass": 164.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element97",
-    "symbol": "E97",
-    "number": 97,
-    "group": 8,
-    "period": 6,
-    "atomic_mass": 165.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element98",
-    "symbol": "E98",
-    "number": 98,
-    "group": 9,
-    "period": 6,
-    "atomic_mass": 167.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element99",
-    "symbol": "E99",
-    "number": 99,
-    "group": 10,
-    "period": 6,
-    "atomic_mass": 168.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element100",
-    "symbol": "E100",
-    "number": 100,
-    "group": 11,
-    "period": 6,
-    "atomic_mass": 170.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element101",
-    "symbol": "E101",
-    "number": 101,
-    "group": 12,
-    "period": 6,
-    "atomic_mass": 171.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element102",
-    "symbol": "E102",
-    "number": 102,
-    "group": 13,
-    "period": 6,
-    "atomic_mass": 173.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element103",
-    "symbol": "E103",
-    "number": 103,
-    "group": 14,
-    "period": 6,
-    "atomic_mass": 174.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element104",
-    "symbol": "E104",
-    "number": 104,
-    "group": 15,
-    "period": 6,
-    "atomic_mass": 176.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element105",
-    "symbol": "E105",
-    "number": 105,
-    "group": 16,
-    "period": 6,
-    "atomic_mass": 177.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element106",
-    "symbol": "E106",
-    "number": 106,
-    "group": 17,
-    "period": 6,
-    "atomic_mass": 179.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element107",
-    "symbol": "E107",
-    "number": 107,
-    "group": 18,
-    "period": 6,
-    "atomic_mass": 180.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element108",
-    "symbol": "E108",
-    "number": 108,
-    "group": 1,
-    "period": 7,
-    "atomic_mass": 182.0,
-    "category": "unknown"
-  },
-  {
-    "name": "Element109",
-    "symbol": "E109",
-    "number": 109,
-    "group": 2,
-    "period": 7,
-    "atomic_mass": 183.5,
-    "category": "unknown"
-  },
-  {
-    "name": "Element110",
-    "symbol": "E110",
-    "number": 110,
     "group": 3,
     "period": 7,
-    "atomic_mass": 185.0,
-    "category": "unknown"
+    "atomic_mass": 237,
+    "category": "actinide"
   },
   {
-    "name": "Element111",
-    "symbol": "E111",
-    "number": 111,
+    "name": "Plutonium",
+    "symbol": "Pu",
+    "number": 94,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 244,
+    "category": "actinide"
+  },
+  {
+    "name": "Americium",
+    "symbol": "Am",
+    "number": 95,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 243,
+    "category": "actinide"
+  },
+  {
+    "name": "Curium",
+    "symbol": "Cm",
+    "number": 96,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 247,
+    "category": "actinide"
+  },
+  {
+    "name": "Berkelium",
+    "symbol": "Bk",
+    "number": 97,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 247,
+    "category": "actinide"
+  },
+  {
+    "name": "Californium",
+    "symbol": "Cf",
+    "number": 98,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 251,
+    "category": "actinide"
+  },
+  {
+    "name": "Einsteinium",
+    "symbol": "Es",
+    "number": 99,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 252,
+    "category": "actinide"
+  },
+  {
+    "name": "Fermium",
+    "symbol": "Fm",
+    "number": 100,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 257,
+    "category": "actinide"
+  },
+  {
+    "name": "Mendelevium",
+    "symbol": "Md",
+    "number": 101,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 258,
+    "category": "actinide"
+  },
+  {
+    "name": "Nobelium",
+    "symbol": "No",
+    "number": 102,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 259,
+    "category": "actinide"
+  },
+  {
+    "name": "Lawrencium",
+    "symbol": "Lr",
+    "number": 103,
+    "group": 3,
+    "period": 7,
+    "atomic_mass": 266,
+    "category": "actinide"
+  },
+  {
+    "name": "Rutherfordium",
+    "symbol": "Rf",
+    "number": 104,
     "group": 4,
     "period": 7,
-    "atomic_mass": 186.5,
-    "category": "unknown"
+    "atomic_mass": 267,
+    "category": "transition metal"
   },
   {
-    "name": "Element112",
-    "symbol": "E112",
-    "number": 112,
+    "name": "Dubnium",
+    "symbol": "Db",
+    "number": 105,
     "group": 5,
     "period": 7,
-    "atomic_mass": 188.0,
-    "category": "unknown"
+    "atomic_mass": 268,
+    "category": "transition metal"
   },
   {
-    "name": "Element113",
-    "symbol": "E113",
-    "number": 113,
+    "name": "Seaborgium",
+    "symbol": "Sg",
+    "number": 106,
     "group": 6,
     "period": 7,
-    "atomic_mass": 189.5,
-    "category": "unknown"
+    "atomic_mass": 269,
+    "category": "transition metal"
   },
   {
-    "name": "Element114",
-    "symbol": "E114",
-    "number": 114,
+    "name": "Bohrium",
+    "symbol": "Bh",
+    "number": 107,
     "group": 7,
     "period": 7,
-    "atomic_mass": 191.0,
-    "category": "unknown"
+    "atomic_mass": 270,
+    "category": "transition metal"
   },
   {
-    "name": "Element115",
-    "symbol": "E115",
-    "number": 115,
+    "name": "Hassium",
+    "symbol": "Hs",
+    "number": 108,
     "group": 8,
     "period": 7,
-    "atomic_mass": 192.5,
-    "category": "unknown"
+    "atomic_mass": 269,
+    "category": "transition metal"
   },
   {
-    "name": "Element116",
-    "symbol": "E116",
-    "number": 116,
+    "name": "Meitnerium",
+    "symbol": "Mt",
+    "number": 109,
     "group": 9,
     "period": 7,
-    "atomic_mass": 194.0,
-    "category": "unknown"
+    "atomic_mass": 278,
+    "category": "unknown, predicted to be transition metal"
   },
   {
-    "name": "Element117",
-    "symbol": "E117",
-    "number": 117,
+    "name": "Darmstadtium",
+    "symbol": "Ds",
+    "number": 110,
     "group": 10,
     "period": 7,
-    "atomic_mass": 195.5,
-    "category": "unknown"
+    "atomic_mass": 281,
+    "category": "unknown, predicted to be transition metal"
   },
   {
-    "name": "Element118",
-    "symbol": "E118",
-    "number": 118,
+    "name": "Roentgenium",
+    "symbol": "Rg",
+    "number": 111,
     "group": 11,
     "period": 7,
-    "atomic_mass": 197.0,
-    "category": "unknown"
+    "atomic_mass": 282,
+    "category": "unknown, predicted to be transition metal"
+  },
+  {
+    "name": "Copernicium",
+    "symbol": "Cn",
+    "number": 112,
+    "group": 12,
+    "period": 7,
+    "atomic_mass": 285,
+    "category": "transition metal"
+  },
+  {
+    "name": "Nihonium",
+    "symbol": "Nh",
+    "number": 113,
+    "group": 13,
+    "period": 7,
+    "atomic_mass": 286,
+    "category": "unknown, predicted to be post-transition metal"
+  },
+  {
+    "name": "Flerovium",
+    "symbol": "Fl",
+    "number": 114,
+    "group": 14,
+    "period": 7,
+    "atomic_mass": 289,
+    "category": "post-transition metal"
+  },
+  {
+    "name": "Moscovium",
+    "symbol": "Mc",
+    "number": 115,
+    "group": 15,
+    "period": 7,
+    "atomic_mass": 290,
+    "category": "unknown, predicted to be post-transition metal"
+  },
+  {
+    "name": "Livermorium",
+    "symbol": "Lv",
+    "number": 116,
+    "group": 16,
+    "period": 7,
+    "atomic_mass": 293,
+    "category": "unknown, predicted to be post-transition metal"
+  },
+  {
+    "name": "Tennessine",
+    "symbol": "Ts",
+    "number": 117,
+    "group": 17,
+    "period": 7,
+    "atomic_mass": 294,
+    "category": "unknown, predicted to be halogen"
+  },
+  {
+    "name": "Oganesson",
+    "symbol": "Og",
+    "number": 118,
+    "group": 18,
+    "period": 7,
+    "atomic_mass": 294,
+    "category": "unknown, predicted to be noble gas"
   }
 ]
