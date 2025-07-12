@@ -14,7 +14,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:intl/date_symbol_data_local.dart';
-
+import 'dart:async';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,11 +79,37 @@ Color _getTaskColor(String type) {
 
 class _HomePageState extends State<HomePage> {
   DateTime selectedDate = DateTime.now();
-  Map<String, List<Map<String, String>>> tasksByDate = {};
+  Map<String, List<Map<String, dynamic>>> tasksByDate = {};
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTasks().then((_) {
+      _checkTaskCompletion();
+    });
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+      _checkTaskCompletion();
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   Future<void> _saveTasks() async {
     final prefs = await SharedPreferences.getInstance();
-    final jsonString = jsonEncode(tasksByDate);
+    Map<String, List<Map<String, dynamic>>> tasksToSave = {};
+    tasksByDate.forEach((dateKey, tasks) {
+      tasksToSave[dateKey] = tasks.map((task) {
+        Map<String, dynamic> taskCopy = Map<String, dynamic>.from(task);
+        taskCopy['isCompleted'] = taskCopy['isCompleted'].toString();
+        return taskCopy;
+      }).toList();
+    });
+    final jsonString = jsonEncode(tasksToSave);
     await prefs.setString('tasks_data', jsonString);
   }
 
@@ -92,11 +118,23 @@ class _HomePageState extends State<HomePage> {
     final jsonString = prefs.getString('tasks_data');
     if (jsonString != null) {
       setState(() {
-        tasksByDate = Map<String, List<Map<String, String>>>.from(
+        tasksByDate = Map<String, List<Map<String, dynamic>>>.from(
           jsonDecode(jsonString).map((key, value) {
-            List<Map<String, String>> taskList = List<Map<String, dynamic>>.from(value).map((item) => Map<String, String>.from(
-                item.map((k, v) => MapEntry(k, v.toString())))).toList();
-            return MapEntry(key, taskList);
+            List<dynamic> taskListDynamic = List<dynamic>.from(value);
+            return MapEntry(key, taskListDynamic.map((item) {
+              Map<String, dynamic> task = Map<String, dynamic>.from(item);
+              if (task['repeatDays'] is String && task['repeatDays'].isNotEmpty) {
+                try {
+                  task['repeatDays'] = List<String>.from(jsonDecode(task['repeatDays']));
+                } catch (e) {
+                  task['repeatDays'] = [];
+                }
+              } else if (task['repeatDays'] == null) {
+                task['repeatDays'] = [];
+              }
+              task['isCompleted'] = item['isCompleted'] == 'true';
+              return task;
+            }).toList());
           }),
         );
         _updateRepeatTasks();
@@ -105,7 +143,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _updateRepeatTasks() {
-    Map<String, List<Map<String, String>>> tempTasksByDate = {};
+    Map<String, List<Map<String, dynamic>>> tempTasksByDate = {};
 
     tasksByDate.forEach((dateKey, tasks) {
       tempTasksByDate[dateKey] = List.from(tasks);
@@ -142,7 +180,8 @@ class _HomePageState extends State<HomePage> {
               if (!tempTasksByDate.containsKey(newDateStr)) {
                 tempTasksByDate[newDateStr] = [];
               }
-              Map<String, String> repeatedTask = Map<String, String>.from(task);
+              Map<String, dynamic> repeatedTask = Map<String, dynamic>.from(task);
+              repeatedTask['isRepeatedInstance'] = true;
 
               bool taskExists = tempTasksByDate[newDateStr]!.any((existingTask) =>
               existingTask['title'] == repeatedTask['title'] &&
@@ -159,6 +198,37 @@ class _HomePageState extends State<HomePage> {
       }
     });
     tasksByDate = tempTasksByDate;
+  }
+
+  void _checkTaskCompletion() {
+    String formattedCurrentDate = DateFormat('yyyy-MM-dd').format(selectedDate);
+    DateTime now = DateTime.now();
+
+    if (tasksByDate.containsKey(formattedCurrentDate)) {
+      for (int i = 0; i < tasksByDate[formattedCurrentDate]!.length; i++) {
+        Map<String, dynamic> task = tasksByDate[formattedCurrentDate]![i];
+        List<String>? times = (task['time'] as String?)?.split(' - ');
+        if (times != null && times.length == 2) {
+          try {
+            DateTime endTime = DateFormat('HH:mm').parse(times[1]);
+            DateTime taskEndTime = DateTime(
+              selectedDate.year,
+              selectedDate.month,
+              selectedDate.day,
+              endTime.hour,
+              endTime.minute,
+            );
+
+            if (now.isAfter(taskEndTime) && !(task['isCompleted'] ?? false)) {
+              setState(() {
+                tasksByDate[formattedCurrentDate]![i]['isCompleted'] = true;
+              });
+              _saveTasks();
+            }
+          } catch (e) {}
+        }
+      }
+    }
   }
 
 
@@ -192,12 +262,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _loadTasks();
-  }
-
   void _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
@@ -209,6 +273,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         selectedDate = picked;
       });
+      _checkTaskCompletion();
     }
   }
 
@@ -219,6 +284,7 @@ class _HomePageState extends State<HomePage> {
     String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
     String? selectedType;
     List<String> repeatDays = [];
+    bool isCompleted = false;
 
     if (index != null) {
       final taskToEdit = tasksByDate[formattedDate]![index];
@@ -236,6 +302,7 @@ class _HomePageState extends State<HomePage> {
           repeatDays = [];
         }
       }
+      isCompleted = taskToEdit['isCompleted'] ?? false;
     } else {
       initialStartTime = DateTime(selectedDate.year, selectedDate.month, selectedDate.day, DateTime.now().hour, DateTime.now().minute);
       initialEndTime = initialStartTime.add(Duration(hours: 1));
@@ -249,19 +316,23 @@ class _HomePageState extends State<HomePage> {
         String? tempSelectedType = selectedType;
         List<String> tempRepeatDays = List.from(repeatDays);
 
-        return StatefulBuilder(
-            builder: (BuildContext context, StateSetter setStateDialog) {
-              return AlertDialog(
-                contentPadding: EdgeInsets.zero,
-                title: Text(index == null ? 'Добавить задачу' : 'Редактировать задачу'),
-                content:SingleChildScrollView(
-                  padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom,
-                    top: 20,
-                    left: 20,
-                    right: 20,
-                  ),
-                  child:Column(
+        return AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          title: Text(index == null ? 'Добавить задачу' : 'Редактировать задачу'),
+          content: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
+            ),
+            child: SingleChildScrollView(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+                top: 20,
+                left: 20,
+                right: 20,
+              ),
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setStateDialog) {
+                  return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TextField(controller: textController, decoration: InputDecoration(labelText: 'Название')),
@@ -314,50 +385,54 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ],
-                  ),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      if (textController.text.isNotEmpty && tempSelectedType != null) {
-                        Map<String, String> newTask = {
-                          "title": textController.text,
-                          "time": "${DateFormat('HH:mm').format(tempStartTime)} - ${DateFormat('HH:mm').format(tempEndTime)}",
-                          "type": tempSelectedType!,
-                          "repeatDays": jsonEncode(tempRepeatDays),
-                        };
-                        if (!tasksByDate.containsKey(formattedDate))
-                        {tasksByDate[formattedDate] = [];}
+                  );
+                },
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                if (textController.text.isNotEmpty && tempSelectedType != null) {
+                  Map<String, dynamic> newTask = {
+                    "title": textController.text,
+                    "time": "${DateFormat('HH:mm').format(tempStartTime)} - ${DateFormat('HH:mm').format(tempEndTime)}",
+                    "type": tempSelectedType!,
+                    "repeatDays": jsonEncode(tempRepeatDays),
+                    "isCompleted": isCompleted,
+                  };
+                  if (!tasksByDate.containsKey(formattedDate))
+                  {tasksByDate[formattedDate] = [];}
 
-                        if (index == null) {
-                          setState(() {
-                            tasksByDate[formattedDate]!.add(newTask);
-                          });
-                        } else {
-                          setState(() {
-                            tasksByDate[formattedDate]![index] = newTask;
-                          });
-                        }
-                        _saveTasks();
-                        _updateRepeatTasks();
+                  if (index == null) {
+                    setState(() {
+                      tasksByDate[formattedDate]!.add(newTask);
+                    });
+                  } else {
+                    setState(() {
+                      tasksByDate[formattedDate]![index] = newTask;
+                    });
+                  }
+                  _saveTasks();
+                  _updateRepeatTasks();
+                  _checkTaskCompletion();
 
-                        DateTime notificationTime = DateTime(
-                          selectedDate.year, selectedDate.month, selectedDate.day,
-                          tempStartTime.hour, tempStartTime.minute,
-                        );
-                        if (notificationTime.isAfter(DateTime.now())) {
-                          scheduleNotification(notificationTime, textController.text);
-                        }
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: Text('Сохранить',
-                        style: TextStyle(color:Colors.white)
-                    ),
-                  ),
-                ],
-              );
-            });
+                  DateTime notificationTime = DateTime(
+                    selectedDate.year, selectedDate.month, selectedDate.day,
+                    tempStartTime.hour, tempStartTime.minute,
+                  );
+                  if (notificationTime.isAfter(DateTime.now())) {
+                    scheduleNotification(notificationTime, textController.text);
+                  }
+                  Navigator.pop(context);
+                }
+              },
+              child: Text('Сохранить',
+                  style: TextStyle(color:Colors.white)
+              ),
+            ),
+          ],
+        );
       },
     );
   }
@@ -366,7 +441,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
-    List<Map<String, String>> tasks = tasksByDate[formattedDate] ?? [];
+    List<Map<String, dynamic>> tasks = tasksByDate[formattedDate] ?? [];
 
     DateTime startTime = DateTime.now();
     DateTime endTime = DateTime.now().add(Duration(hours: 1));
@@ -436,6 +511,7 @@ class _HomePageState extends State<HomePage> {
                   startTime = DateTime(newDate.year, newDate.month, newDate.day, startTime.hour, startTime.minute);
                   endTime = DateTime(newDate.year, newDate.month, newDate.day, endTime.hour, endTime.minute);
                 });
+                _checkTaskCompletion();
               },
 
             ),
@@ -455,6 +531,7 @@ class _HomePageState extends State<HomePage> {
                           setState(() {
                             selectedDate = selectedDate.subtract(Duration(days: 1));
                           });
+                          _checkTaskCompletion();
                         },
                       ),
                       GestureDetector(onTap: () => _selectDate(context),
@@ -476,6 +553,7 @@ class _HomePageState extends State<HomePage> {
                           setState(() {
                             selectedDate = selectedDate.add(Duration(days: 1));
                           });
+                          _checkTaskCompletion();
                         },
                       ),
                     ],
@@ -493,59 +571,94 @@ class _HomePageState extends State<HomePage> {
                         } catch (e) {}
                       }
 
+                      bool isTaskCompleted = task['isCompleted'] ?? false;
+
                       return Card(
-                        color: _getTaskColor(task["type"]!),
+                        color: isTaskCompleted
+                            ? _getTaskColor(task["type"]!).withOpacity(0.6)
+                            : _getTaskColor(task["type"]!),
                         child: ListTile(
-                          title: Text(tasks[index]['title']!, style: TextStyle(fontWeight: FontWeight.bold)),
+                          leading: IconButton(
+                            icon: Icon(
+                              isTaskCompleted ? Icons.check_circle : Icons.radio_button_unchecked,
+                              color: isTaskCompleted ? Colors.greenAccent : Colors.white,
+                              size: 28,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                tasksByDate[formattedDate]![index]['isCompleted'] = !isTaskCompleted;
+                              });
+                              _saveTasks();
+                            },
+                          ),
+                          title: Text(
+                            tasks[index]['title']!,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              decoration: isTaskCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                              color: Colors.white,
+                            ),
+                          ),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(tasks[index]['time']!),
+                              Text(
+                                tasks[index]['time']!,
+                                style: TextStyle(color: Colors.white70),
+                              ),
                               if (repeatDaysToDisplay.isNotEmpty)
-                                Text('Повтор: ${repeatDaysToDisplay.join(", ")}'),
+                                Text(
+                                  'Повтор: ${repeatDaysToDisplay.join(", ")}',
+                                  style: TextStyle(color: Colors.white70),
+                                ),
                             ],
                           ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.repeat),
-                                onPressed: () {
-                                  List<String> currentRepeatDays = [];
-                                  if (task['repeatDays'] != null && task['repeatDays']!.isNotEmpty) {
-                                    try {
-                                      currentRepeatDays = List<String>.from(jsonDecode(task['repeatDays']!));
-                                    } catch (e) {}
-                                  }
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => RepeatDialog(
-                                      initialSelectedDays: currentRepeatDays,
-                                      taskTitle: task['title']!,
-                                      onRepeatDaysSelected: (newDays) {
-                                        setState(() {
-                                          tasksByDate[formattedDate]![index]["repeatDays"] = jsonEncode(newDays);
-                                          _saveTasks();
-                                          _updateRepeatTasks();
-                                        });
-                                      },
-                                    ),
-                                  );
-                                },
+                          trailing: PopupMenuButton<String>(
+                            icon: Icon(Icons.more_vert, color: Colors.white),
+                            onSelected: (String value) {
+                              if (value == 'repeat') {
+                                List<String> currentRepeatDays = [];
+                                if (task['repeatDays'] != null && task['repeatDays']!.isNotEmpty) {
+                                  try {
+                                    currentRepeatDays = List<String>.from(jsonDecode(task['repeatDays']!));
+                                  } catch (e) {}
+                                }
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => RepeatDialog(
+                                    initialSelectedDays: currentRepeatDays,
+                                    taskTitle: task['title']!,
+                                    onRepeatDaysSelected: (newDays) {
+                                      setState(() {
+                                        tasksByDate[formattedDate]![index]["repeatDays"] = jsonEncode(newDays);
+                                        _saveTasks();
+                                        _updateRepeatTasks();
+                                      });
+                                    },
+                                  ),
+                                );
+                              } else if (value == 'edit') {
+                                _addTask(index: index);
+                              } else if (value == 'delete') {
+                                setState(() {
+                                  tasksByDate[formattedDate]!.removeAt(index);
+                                });
+                                _saveTasks();
+                                _updateRepeatTasks();
+                              }
+                            },
+                            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                              const PopupMenuItem<String>(
+                                value: 'repeat',
+                                child: Text('Повтор'),
                               ),
-                              IconButton(
-                                icon: Icon(Icons.edit),
-                                onPressed: () => _addTask(index: index),
+                              const PopupMenuItem<String>(
+                                value: 'edit',
+                                child: Text('Редактировать'),
                               ),
-                              IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () {
-                                  setState(() {
-                                    tasksByDate[formattedDate]!.removeAt(index);
-                                  });
-                                  _saveTasks();
-                                  _updateRepeatTasks();
-                                },
+                              const PopupMenuItem<String>(
+                                value: 'delete',
+                                child: Text('Удалить'),
                               ),
                             ],
                           ),

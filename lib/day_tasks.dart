@@ -63,6 +63,7 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
     await _loadTasks();
     setState(() {
       _updateRepeatTasks();
+      _checkTaskCompletion();
     });
   }
 
@@ -84,6 +85,7 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
             } else if (task['repeatDays'] == null) {
               task['repeatDays'] = [];
             }
+            task['isCompleted'] = item['isCompleted'] == 'true';
             return task;
           }).toList());
         }),
@@ -102,6 +104,7 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
         if (taskCopy['repeatDays'] is List<String>) {
           taskCopy['repeatDays'] = jsonEncode(taskCopy['repeatDays']);
         }
+        taskCopy['isCompleted'] = taskCopy['isCompleted'].toString();
         return taskCopy;
       }).toList();
     });
@@ -111,7 +114,6 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
   }
 
   void _updateRepeatTasks() {
-
     Map<String, List<Map<String, dynamic>>> tempTasksForDisplay = {};
 
     tasksByDate.forEach((dateKey, tasks) {
@@ -177,6 +179,39 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
     tasksByDate = tempTasksForDisplay;
   }
 
+  void _checkTaskCompletion() {
+    String formattedCurrentDate = DateFormat('yyyy-MM-dd').format(displayDate);
+    DateTime now = DateTime.now();
+
+    if (tasksByDate.containsKey(formattedCurrentDate)) {
+      for (int i = 0; i < tasksByDate[formattedCurrentDate]!.length; i++) {
+        Map<String, dynamic> task = tasksByDate[formattedCurrentDate]![i];
+        List<String>? times = (task['time'] as String?)?.split(' - ');
+        if (times != null && times.length == 2) {
+          try {
+            DateTime endTime = DateFormat('HH:mm').parse(times[1]);
+            DateTime taskEndTime = DateTime(
+              displayDate.year,
+              displayDate.month,
+              displayDate.day,
+              endTime.hour,
+              endTime.minute,
+            );
+
+            if (now.isAfter(taskEndTime) && !(task['isCompleted'] ?? false)) {
+              setState(() {
+                tasksByDate[formattedCurrentDate]![i]['isCompleted'] = true;
+              });
+              _saveTasks();
+            }
+          } catch (e) {
+            print("Ошибка парсинга времени задачи: $e");
+          }
+        }
+      }
+    }
+  }
+
 
   Future<void> scheduleNotification(DateTime startTime, String title) async {
     const androidDetails = AndroidNotificationDetails(
@@ -215,6 +250,7 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
     String formattedDate = DateFormat('yyyy-MM-dd').format(targetDate);
     String? selectedType;
     List<String> currentRepeatDays = [];
+    bool isCompleted = false;
 
     if (index != null && tasksByDate.containsKey(formattedDate) && tasksByDate[formattedDate]!.length > index) {
       final taskToEdit = tasksByDate[formattedDate]![index];
@@ -236,6 +272,7 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
           currentRepeatDays = [];
         }
       }
+      isCompleted = taskToEdit['isCompleted'] ?? false;
     }
 
 
@@ -246,112 +283,118 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
         DateTime tempEndTime = initialEndTime;
         String? tempSelectedType = selectedType;
 
-        return StatefulBuilder(
-          builder: (BuildContext context, StateSetter setStateDialog) {
-            return AlertDialog(
-              contentPadding: EdgeInsets.zero,
-              title: Text(index == null ? 'Добавить задачу' : 'Редактировать задачу'),
-              content: SingleChildScrollView(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
-                  top: 20,
-                  left: 20,
-                  right: 20,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextField(controller: textController, decoration: InputDecoration(labelText: 'Название')),
-                    SizedBox(height: 10),
-                    DropdownButtonFormField<String>(
-                      value: tempSelectedType,
-                      decoration: InputDecoration(labelText: "Тип задачи"),
-                      items: ["Хобби", "Работа", "Учёба", "Спорт", "Отдых", "Другие дела"].map((String type) {
-                        return DropdownMenuItem<String>(
-                          value: type,
-                          child: Text(type),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setStateDialog(() {
-                          tempSelectedType = newValue;
-                        });
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    Text('Начало'),
-                    TimePickerSpinner(
-                      time: tempStartTime,
-                      is24HourMode: true,
-                      normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
-                      highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
-                      spacing: 50,
-                      itemHeight: 50,
-                      isForce2Digits: true,
-                      onTimeChange: (time) {
-                        setStateDialog(() {
-                          tempStartTime = DateTime(targetDate.year, targetDate.month, targetDate.day, time.hour, time.minute);
-                        });
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    Text('Конец'),
-                    TimePickerSpinner(
-                      time: tempEndTime,
-                      is24HourMode: true,
-                      normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
-                      highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
-                      spacing: 50,
-                      itemHeight: 50,
-                      isForce2Digits: true,
-                      onTimeChange: (time) {
-                        setStateDialog(() {
-                          tempEndTime = DateTime(targetDate.year, targetDate.month, targetDate.day, time.hour, time.minute);
-                        });
-                      },
-                    ),
-                  ],
-                ),
+        return AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          title: Text(index == null ? 'Добавить задачу' : 'Редактировать задачу'),
+          content: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
+            ),
+            child: SingleChildScrollView(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+                top: 20,
+                left: 20,
+                right: 20,
               ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    if (textController.text.isNotEmpty && tempSelectedType != null) {
-                      Map<String, dynamic> taskData = {
-                        "title": textController.text,
-                        "time": "${DateFormat('HH:mm').format(tempStartTime)} - ${DateFormat('HH:mm').format(tempEndTime)}",
-                        "type": tempSelectedType!,
-                        "repeatDays": currentRepeatDays,
-                      };
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setStateDialog) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(controller: textController, decoration: InputDecoration(labelText: 'Название')),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField<String>(
+                        value: tempSelectedType,
+                        decoration: InputDecoration(labelText: "Тип задачи"),
+                        items: ["Хобби", "Работа", "Учёба", "Спорт", "Отдых", "Другие дела"].map((String type) {
+                          return DropdownMenuItem<String>(
+                            value: type,
+                            child: Text(type),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setStateDialog(() {
+                            tempSelectedType = newValue;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10),
+                      Text('Начало'),
+                      TimePickerSpinner(
+                        time: tempStartTime,
+                        is24HourMode: true,
+                        normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                        highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
+                        spacing: 50,
+                        itemHeight: 50,
+                        isForce2Digits: true,
+                        onTimeChange: (time) {
+                          setStateDialog(() {
+                            tempStartTime = DateTime(targetDate.year, targetDate.month, targetDate.day, time.hour, time.minute);
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10),
+                      Text('Конец'),
+                      TimePickerSpinner(
+                        time: tempEndTime,
+                        is24HourMode: true,
+                        normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                        highlightedTextStyle: TextStyle(fontSize: 24, color: Colors.blue),
+                        spacing: 50,
+                        itemHeight: 50,
+                        isForce2Digits: true,
+                        onTimeChange: (time) {
+                          setStateDialog(() {
+                            tempEndTime = DateTime(targetDate.year, targetDate.month, targetDate.day, time.hour, time.minute);
+                          });
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                if (textController.text.isNotEmpty && tempSelectedType != null) {
+                  Map<String, dynamic> taskData = {
+                    "title": textController.text,
+                    "time": "${DateFormat('HH:mm').format(tempStartTime)} - ${DateFormat('HH:mm').format(tempEndTime)}",
+                    "type": tempSelectedType!,
+                    "repeatDays": currentRepeatDays,
+                    "isCompleted": isCompleted,
+                  };
 
-                      setState(() {
-                        if (!tasksByDate.containsKey(formattedDate)) {
-                          tasksByDate[formattedDate] = [];
-                        }
-                        if (index == null) {
-                          tasksByDate[formattedDate]!.add(taskData);
-                        } else {
-                          tasksByDate[formattedDate]![index] = taskData;
-                        }
-                      });
-                      _saveTasks();
-                      _loadAndProcessTasks();
-                      Navigator.pop(context);
-
-                      DateTime notificationTime = DateTime(
-                        targetDate.year, targetDate.month, targetDate.day,
-                        tempStartTime.hour, tempStartTime.minute,
-                      );
-                      if (notificationTime.isAfter(DateTime.now())) {
-                        scheduleNotification(notificationTime, textController.text);
-                      }
+                  setState(() {
+                    if (!tasksByDate.containsKey(formattedDate)) {
+                      tasksByDate[formattedDate] = [];
                     }
-                  },
-                  child: Text('Сохранить', style: TextStyle(color: Colors.white)),
-                ),
-              ],
-            );
-          },
+                    if (index == null) {
+                      tasksByDate[formattedDate]!.add(taskData);
+                    } else {
+                      tasksByDate[formattedDate]![index] = taskData;
+                    }
+                  });
+                  _saveTasks();
+                  _loadAndProcessTasks();
+                  Navigator.pop(context);
+
+                  DateTime notificationTime = DateTime(
+                    targetDate.year, targetDate.month, targetDate.day,
+                    tempStartTime.hour, tempStartTime.minute,
+                  );
+                  if (notificationTime.isAfter(DateTime.now())) {
+                    scheduleNotification(notificationTime, textController.text);
+                  }
+                }
+              },
+              child: Text('Сохранить', style: TextStyle(color: Colors.white)),
+            ),
+          ],
         );
       },
     );
@@ -498,37 +541,75 @@ class _DayTasksScreenState extends State<DayTasksScreen> {
                 } else if (task['repeatDays'] is String && task['repeatDays'].isNotEmpty) {
                   try {
                     repeatDaysToDisplay = List<String>.from(jsonDecode(task['repeatDays']));
-                  } catch (e) {
-                  }
+                  } catch (e) {}
                 }
+
+                bool isTaskCompleted = task['isCompleted'] ?? false;
 
                 return Card(
                   margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  color: _getTaskColor(task["type"]!),
+                  color: isTaskCompleted
+                      ? _getTaskColor(task["type"]!).withOpacity(0.6)
+                      : _getTaskColor(task["type"]!),
                   child: ListTile(
-                    title: Text(task['title']!, style: TextStyle(fontWeight: FontWeight.bold)),
+                    leading: IconButton(
+                      icon: Icon(
+                        isTaskCompleted ? Icons.check_circle : Icons.radio_button_unchecked,
+                        color: isTaskCompleted ? Colors.greenAccent : Colors.white,
+                        size: 28,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          tasksByDate[formattedDisplayDate]![index]['isCompleted'] = !isTaskCompleted;
+                        });
+                        _saveTasks();
+                      },
+                    ),
+                    title: Text(
+                      task['title']!,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: isTaskCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                        color: Colors.white,
+                      ),
+                    ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(task['time']!),
+                        Text(
+                          task['time']!,
+                          style: TextStyle(color: Colors.white70),
+                        ),
                         if (repeatDaysToDisplay.isNotEmpty)
-                          Text('Повтор: ${repeatDaysToDisplay.join(", ")}'),
+                          Text(
+                            'Повтор: ${repeatDaysToDisplay.join(", ")}',
+                            style: TextStyle(color: Colors.white70),
+                          ),
                       ],
                     ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.repeat),
-                          onPressed: () => _showRepeatDialog(task, index, formattedDisplayDate),
+                    trailing: PopupMenuButton<String>(
+                      icon: Icon(Icons.more_vert, color: Colors.white),
+                      onSelected: (String value) {
+                        if (value == 'repeat') {
+                          _showRepeatDialog(task, index, formattedDisplayDate);
+                        } else if (value == 'edit') {
+                          _addTask(index: index, targetDate: displayDate);
+                        } else if (value == 'delete') {
+                          _deleteTask(index, formattedDisplayDate);
+                        }
+                      },
+                      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                        const PopupMenuItem<String>(
+                          value: 'repeat',
+                          child: Text('Повтор'),
                         ),
-                        IconButton(
-                          icon: Icon(Icons.edit),
-                          onPressed: () => _addTask(index: index, targetDate: displayDate),
+                        const PopupMenuItem<String>(
+                          value: 'edit',
+                          child: Text('Редактировать'),
                         ),
-                        IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () => _deleteTask(index, formattedDisplayDate),
+                        const PopupMenuItem<String>(
+                          value: 'delete',
+                          child: Text('Удалить'),
                         ),
                       ],
                     ),
